@@ -1,0 +1,22 @@
+#audio-bar audio {
+  padding: 5px;
+}
+.scroll-header {
+  background-color: #fff;
+  height: 70px;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+.time-marker {
+  padding-right: 10px;
+}
+.transcript-line {
+  scroll-margin-top: 70px;
+}
+.highlighted-line {
+  background-color: #eee;
+  font-weight: bold;
+}
