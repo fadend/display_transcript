@@ -20,6 +20,9 @@ class TranscriptDisplay {
     this.audioElem.addEventListener("timeupdate", () => {
       this.highlightLineForTime(this.audioElem.currentTime);
     });
+    this.audioElem.addEventListener("seeked", () => {
+      this.highlightLineForTime(this.audioElem.currentTime);
+    });
   }
   populateTranscript(vttContent) {
     const parts = vttContent.split(/\n\n/g);
@@ -50,6 +53,7 @@ class TranscriptDisplay {
       elem.classList.add("transcript-line");
       this.index.push({ startTime, stopTime, elem });
       const timeMarker = document.createElement("a");
+      timeMarker.title = `${startTime} to ${stopTime} seconds from start`;
       timeMarker.dataset.startTime = startTime;
       timeMarker.href = "#" + startTimestamp;
       timeMarker.addEventListener("click", () => {
@@ -71,9 +75,9 @@ class TranscriptDisplay {
   highlightLineForTime(time) {
     let low = 0;
     let high = this.index.length - 1;
-    while (high > low) {
-      let middle = parseInt((low + high) / 2);
-      let middleEntry = this.index[middle];
+    while (high >= low) {
+      const middle = parseInt((low + high) / 2);
+      const middleEntry = this.index[middle];
       if (time < middleEntry.startTime) {
         high = middle - 1;
       } else if (time > middleEntry.stopTime) {
