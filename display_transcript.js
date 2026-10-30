@@ -31,13 +31,13 @@ class TranscriptDisplay {
     }
     let previousPart = "";
     for (let i = 1; i < parts.length; ++i) {
-      const currentPart = parts[i];
+      const currentPart = parts[i].replace(/^\s*\d+\n/g, "");
       if (currentPart === previousPart) {
         continue;
       }
       previousPart = currentPart;
       const match =
-        /\d+\n(\d\d:\d\d:\d\d\.\d{3}) --> (\d\d:\d\d:\d\d\.\d{3})(\n.*)?/s.exec(
+        /(\d\d:\d\d:\d\d\.\d{3}) --> (\d\d:\d\d:\d\d\.\d{3})(\n.*)?/s.exec(
           currentPart,
         );
       if (!match) {
