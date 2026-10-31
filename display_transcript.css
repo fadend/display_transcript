@@ -1,6 +1,10 @@
 #audio-bar audio {
   padding: 5px;
 }
+#title {
+  padding: 0;
+  margin: 0;
+}
 .scroll-header {
   background-color: #fff;
   height: 70px;

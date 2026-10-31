@@ -108,6 +108,12 @@ async function displayTranscript(src, vtt) {
 
 const query = location.search.replace(/^\?/, "").replace("#.*", "");
 const params = new URLSearchParams(query);
+const title = params.get("title");
+if (title) {
+  const labeledTitle = `${title} - Transcript`;
+  document.querySelector("title").textContent = labeledTitle;
+  document.querySelector("#title").textContent = labeledTitle;
+}
 const src = params.get("src");
 const vttSrc = params.get("vtt");
 if (src && vttSrc) {
